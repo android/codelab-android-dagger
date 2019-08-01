@@ -25,19 +25,19 @@ import org.mockito.Mockito.verify
 class RegistrationViewModelTest {
 
     private lateinit var userManager: UserManager
-    private lateinit var sut: RegistrationViewModel
+    private lateinit var viewModel: RegistrationViewModel
 
     @Before
     fun setup() {
         userManager = mock(UserManager::class.java)
-        sut = RegistrationViewModel(userManager)
+        viewModel = RegistrationViewModel(userManager)
     }
 
     @Test
     fun `Register user calls userManager`() {
-        sut.updateUserData("username", "password")
-        sut.acceptTCs()
-        sut.registerUser()
+        viewModel.updateUserData("username", "password")
+        viewModel.acceptTCs()
+        viewModel.registerUser()
 
         verify(userManager).registerUser("username", "password")
     }

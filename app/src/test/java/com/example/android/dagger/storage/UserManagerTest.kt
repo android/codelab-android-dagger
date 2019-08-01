@@ -17,76 +17,88 @@
 package com.example.android.dagger.storage
 
 import com.example.android.dagger.user.UserManager
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
 class UserManagerTest {
 
     private lateinit var storage: Storage
-    private lateinit var sut: UserManager
+    private lateinit var userManager: UserManager
 
     @Before
     fun setup() {
         storage = FakeStorage()
-        sut = UserManager(storage)
+        userManager = UserManager(storage)
     }
 
     @Test
     fun `Username returns what is in the storage`() {
-        assertEquals("", sut.username)
+        assertEquals("", userManager.username)
 
-        sut.registerUser("username", "password")
+        userManager.registerUser("username", "password")
 
-        assertEquals("username", sut.username)
+        assertEquals("username", userManager.username)
     }
 
     @Test
     fun `IsUserRegistered behaves as expected`() {
-        assertFalse(sut.isUserRegistered())
+        assertFalse(userManager.isUserRegistered())
 
-        sut.registerUser("username", "password")
+        userManager.registerUser("username", "password")
 
-        assertTrue(sut.isUserRegistered())
+        assertTrue(userManager.isUserRegistered())
     }
 
     @Test
     fun `Register user adds username and password to the storage`() {
-        assertFalse(sut.isUserRegistered())
-        assertFalse(sut.isUserLoggedIn())
+        assertFalse(userManager.isUserRegistered())
+        assertFalse(userManager.isUserLoggedIn())
 
-        sut.registerUser("username", "password")
+        userManager.registerUser("username", "password")
 
-        assertTrue(sut.isUserRegistered())
-        assertTrue(sut.isUserLoggedIn())
+        assertTrue(userManager.isUserRegistered())
+        assertTrue(userManager.isUserLoggedIn())
         assertEquals("username", storage.getString("registered_user"))
         assertEquals("password", storage.getString("usernamepassword"))
     }
 
     @Test
     fun `Login succeeds when username is registered and password is correct`() {
-        sut.registerUser("username", "password")
-        sut.logout()
+        userManager.registerUser("username", "password")
+        userManager.logout()
 
-        assertTrue(sut.loginUser("username", "password"))
-        assertTrue(sut.isUserLoggedIn())
+        assertTrue(userManager.loginUser("username", "password"))
+        assertTrue(userManager.isUserLoggedIn())
     }
 
     @Test
     fun `Login fails when username is not registered`() {
-        sut.registerUser("username", "password")
-        sut.logout()
+        userManager.registerUser("username", "password")
+        userManager.logout()
 
-        assertFalse(sut.loginUser("username2", "password"))
-        assertFalse(sut.isUserLoggedIn())
+        assertFalse(userManager.loginUser("username2", "password"))
+        assertFalse(userManager.isUserLoggedIn())
     }
 
     @Test
     fun `Login fails when username is registered but password is incorrect`() {
-        sut.registerUser("username", "password")
-        sut.logout()
+        userManager.registerUser("username", "password")
+        userManager.logout()
 
-        assertFalse(sut.loginUser("username", "password2"))
-        assertFalse(sut.isUserLoggedIn())
+        assertFalse(userManager.loginUser("username", "password2"))
+        assertFalse(userManager.isUserLoggedIn())
+    }
+
+    @Test
+    fun `Unregister behaves as expected`() {
+        userManager.registerUser("username", "password")
+        assertTrue(userManager.isUserLoggedIn())
+
+        userManager.unregister()
+        assertFalse(userManager.isUserLoggedIn())
+        assertFalse(userManager.isUserRegistered())
     }
 }

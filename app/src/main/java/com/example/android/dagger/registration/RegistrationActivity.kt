@@ -27,7 +27,7 @@ import com.example.android.dagger.registration.termsandconditions.TermsAndCondit
 
 class RegistrationActivity : AppCompatActivity() {
 
-    private lateinit var registrationViewModel: RegistrationViewModel
+    lateinit var registrationViewModel: RegistrationViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +35,8 @@ class RegistrationActivity : AppCompatActivity() {
 
         registrationViewModel = RegistrationViewModel((application as MyApplication).userManager)
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_holder, EnterDetailsFragment())
-            .commit()
+                .add(R.id.fragment_holder, EnterDetailsFragment())
+                .commit()
     }
 
     /**
@@ -44,9 +44,9 @@ class RegistrationActivity : AppCompatActivity() {
      */
     fun onDetailsEntered() {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_holder, TermsAndConditionsFragment())
-            .addToBackStack(TermsAndConditionsFragment::class.java.simpleName)
-            .commit()
+                .replace(R.id.fragment_holder, TermsAndConditionsFragment())
+                .addToBackStack(TermsAndConditionsFragment::class.java.simpleName)
+                .commit()
     }
 
     /**

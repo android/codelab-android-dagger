@@ -38,5 +38,9 @@ class LoginViewModel(private val userManager: UserManager) {
         }
     }
 
+    fun unregister() {
+        userManager.unregister()
+    }
+
     fun getUsername(): String = userManager.username
 }

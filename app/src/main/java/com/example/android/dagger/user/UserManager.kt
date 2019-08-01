@@ -62,6 +62,13 @@ class UserManager(private val storage: Storage) {
         userDataRepository = null
     }
 
+    fun unregister() {
+        val username = storage.getString(REGISTERED_USER)
+        storage.setString(REGISTERED_USER, "")
+        storage.setString("$username$PASSWORD_SUFFIX", "")
+        logout()
+    }
+
     private fun userJustLoggedIn() {
         userDataRepository = UserDataRepository(this)
     }

@@ -28,6 +28,7 @@ import androidx.lifecycle.Observer
 import com.example.android.dagger.main.MainActivity
 import com.example.android.dagger.MyApplication
 import com.example.android.dagger.R
+import com.example.android.dagger.registration.RegistrationActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -64,6 +65,14 @@ class LoginActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.login).setOnClickListener {
             loginViewModel.login(usernameEditText.text.toString(), passwordEditText.text.toString())
+        }
+        findViewById<Button>(R.id.unregister).setOnClickListener {
+            loginViewModel.unregister()
+            val intent = Intent(this, RegistrationActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK or
+                    Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
         }
     }
 }

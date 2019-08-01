@@ -23,8 +23,8 @@ import com.example.android.dagger.user.UserManager
  * SettingsViewModel is the ViewModel that [SettingsActivity] uses to handle complex logic.
  */
 class SettingsViewModel(
-    private val userDataRepository: UserDataRepository,
-    private val userManager: UserManager
+        private val userDataRepository: UserDataRepository,
+        private val userManager: UserManager
 ) {
 
     fun refreshNotifications() {

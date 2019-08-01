@@ -19,12 +19,13 @@ package com.example.android.dagger.login
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.android.dagger.LiveDataTestUtil
 import com.example.android.dagger.user.UserManager
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mockito.anyString
+import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when` as whenever
 
 class LoginViewModelTest {
@@ -32,20 +33,20 @@ class LoginViewModelTest {
     // Executes each task synchronously using Architecture Components.
     @get:Rule var instantExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var sut: LoginViewModel
+    private lateinit var viewModel: LoginViewModel
     private lateinit var userManager: UserManager
 
     @Before
     fun setup() {
         userManager = mock(UserManager::class.java)
-        sut = LoginViewModel(userManager)
+        viewModel = LoginViewModel(userManager)
     }
 
     @Test
     fun `Get username`() {
         whenever(userManager.username).thenReturn("Username")
 
-        val username = sut.getUsername()
+        val username = viewModel.getUsername()
 
         assertEquals("Username", username)
     }
@@ -54,17 +55,24 @@ class LoginViewModelTest {
     fun `Login emits success`() {
         whenever(userManager.loginUser(anyString(), anyString())).thenReturn(true)
 
-        sut.login("username", "login")
+        viewModel.login("username", "login")
 
-        assertEquals(LiveDataTestUtil.getValue(sut.loginState), LoginSuccess)
+        assertEquals(LiveDataTestUtil.getValue(viewModel.loginState), LoginSuccess)
     }
 
     @Test
     fun `Login emits error`() {
         whenever(userManager.loginUser(anyString(), anyString())).thenReturn(false)
 
-        sut.login("username", "login")
+        viewModel.login("username", "login")
 
-        assertEquals(LiveDataTestUtil.getValue(sut.loginState), LoginError)
+        assertEquals(LiveDataTestUtil.getValue(viewModel.loginState), LoginError)
+    }
+
+    @Test
+    fun `Login unregisters`() {
+        viewModel.unregister()
+
+        verify(userManager).unregister()
     }
 }

@@ -18,10 +18,7 @@ package com.example.android.dagger.registration.enterdetails
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.android.dagger.LiveDataTestUtil
-import com.example.android.dagger.registration.enterdetails.EnterDetailsError
-import com.example.android.dagger.registration.enterdetails.EnterDetailsSuccess
-import com.example.android.dagger.registration.enterdetails.EnterDetailsViewModel
-import org.junit.Assert.*
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -32,31 +29,31 @@ class EnterDetailsViewModelTest {
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var sut: EnterDetailsViewModel
+    private lateinit var viewModel: EnterDetailsViewModel
 
     @Before
     fun setup() {
-        sut = EnterDetailsViewModel()
+        viewModel = EnterDetailsViewModel()
     }
 
     @Test
     fun `ValidateInput gives error when username is invalid`() {
-        sut.validateInput("user", "password")
+        viewModel.validateInput("user", "password")
 
-        assertTrue(LiveDataTestUtil.getValue(sut.enterDetailsState) is EnterDetailsError)
+        assertTrue(LiveDataTestUtil.getValue(viewModel.enterDetailsState) is EnterDetailsError)
     }
 
     @Test
     fun `ValidateInput gives error when password is invalid`() {
-        sut.validateInput("username", "pass")
+        viewModel.validateInput("username", "pass")
 
-        assertTrue(LiveDataTestUtil.getValue(sut.enterDetailsState) is EnterDetailsError)
+        assertTrue(LiveDataTestUtil.getValue(viewModel.enterDetailsState) is EnterDetailsError)
     }
 
     @Test
     fun `ValidateInput succeeds when input is valid`() {
-        sut.validateInput("username", "password")
+        viewModel.validateInput("username", "password")
 
-        assertTrue(LiveDataTestUtil.getValue(sut.enterDetailsState) is EnterDetailsSuccess)
+        assertTrue(LiveDataTestUtil.getValue(viewModel.enterDetailsState) is EnterDetailsSuccess)
     }
 }

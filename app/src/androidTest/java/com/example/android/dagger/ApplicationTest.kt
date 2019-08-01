@@ -55,5 +55,17 @@ class ApplicationTest {
 
         // Main
         onView(withText("Hello username!")).check(matches(isDisplayed()))
+        onView(withText("SETTINGS")).perform(click())
+
+        // Settings
+        onView(withText("REFRESH NOTIFICATIONS")).check(matches(isDisplayed()))
+        onView(withText("LOGOUT")).perform(click())
+
+        // Login
+        onView(withText("Welcome to Dagger World!")).check(matches(isDisplayed()))
+        onView(withId(R.id.unregister)).perform(click())
+
+        // Registration
+        onView(withText("Register to Dagger World!")).check(matches(isDisplayed()))
     }
 }

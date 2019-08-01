@@ -27,25 +27,25 @@ class SettingsViewModelTest {
 
     private lateinit var userManager: UserManager
     private lateinit var userDataRepository: UserDataRepository
-    private lateinit var sut: SettingsViewModel
+    private lateinit var viewModel: SettingsViewModel
 
     @Before
     fun setup() {
         userManager = mock(UserManager::class.java)
         userDataRepository = mock(UserDataRepository::class.java)
-        sut = SettingsViewModel(userDataRepository, userManager)
+        viewModel = SettingsViewModel(userDataRepository, userManager)
     }
 
     @Test
     fun `Refresh notifications works as expected`() {
-        sut.refreshNotifications()
+        viewModel.refreshNotifications()
 
         verify(userDataRepository).refreshUnreadNotifications()
     }
 
     @Test
     fun `Logout works as expected`() {
-        sut.logout()
+        viewModel.logout()
 
         verify(userManager).logout()
     }
