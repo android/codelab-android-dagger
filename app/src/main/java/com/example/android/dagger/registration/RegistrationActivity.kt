@@ -27,7 +27,7 @@ import com.example.android.dagger.registration.termsandconditions.TermsAndCondit
 
 class RegistrationActivity : AppCompatActivity() {
 
-    lateinit var registrationViewModel: RegistrationViewModel
+    private lateinit var registrationViewModel: RegistrationViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
