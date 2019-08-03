@@ -34,9 +34,9 @@ class EnterDetailsViewModel {
     fun validateInput(username: String, password: String) {
         when {
             username.length < MAX_LENGTH -> _enterDetailsState.value =
-                    EnterDetailsError("Username has to be longer than 4 characters")
+                EnterDetailsError("Username has to be longer than 4 characters")
             password.length < MAX_LENGTH -> _enterDetailsState.value =
-                    EnterDetailsError("Password has to be longer than 4 characters")
+                EnterDetailsError("Password has to be longer than 4 characters")
             else -> _enterDetailsState.value = EnterDetailsSuccess
         }
     }

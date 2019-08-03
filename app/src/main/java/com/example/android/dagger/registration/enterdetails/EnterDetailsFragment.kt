@@ -49,9 +49,9 @@ class EnterDetailsFragment : Fragment() {
     private lateinit var passwordEditText: EditText
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_enter_details, container, false)
 
@@ -59,22 +59,22 @@ class EnterDetailsFragment : Fragment() {
 
         enterDetailsViewModel = EnterDetailsViewModel()
         enterDetailsViewModel.enterDetailsState.observe(this,
-                Observer<EnterDetailsViewState> { state ->
-                    when (state) {
-                        is EnterDetailsSuccess -> {
+            Observer<EnterDetailsViewState> { state ->
+                when (state) {
+                    is EnterDetailsSuccess -> {
 
-                            val username = usernameEditText.text.toString()
-                            val password = passwordEditText.text.toString()
-                            registrationViewModel.updateUserData(username, password)
+                        val username = usernameEditText.text.toString()
+                        val password = passwordEditText.text.toString()
+                        registrationViewModel.updateUserData(username, password)
 
-                            (activity as RegistrationActivity).onDetailsEntered()
-                        }
-                        is EnterDetailsError -> {
-                            errorTextView.text = state.error
-                            errorTextView.visibility = View.VISIBLE
-                        }
+                        (activity as RegistrationActivity).onDetailsEntered()
                     }
-                })
+                    is EnterDetailsError -> {
+                        errorTextView.text = state.error
+                        errorTextView.visibility = View.VISIBLE
+                    }
+                }
+            })
 
         setupViews(view)
         return view
