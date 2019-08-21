@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.example.android.dagger
+package com.example.android.dagger.di
 
-import com.example.android.dagger.di.AppComponent
-import com.example.android.dagger.di.DaggerTestAppComponent
+import com.example.android.dagger.storage.FakeStorage
+import com.example.android.dagger.storage.Storage
+import dagger.Binds
+import dagger.Module
 
-/**
- * MyTestApplication will override MyApplication in android tests
- */
-class MyTestApplication : MyApplication() {
+// Overrides StorageModule in android tests
+@Module
+abstract class TestStorageModule {
 
-    override fun initializeComponent(): AppComponent {
-        // Creates a new TestAppComponent that injects fakes types
-        return DaggerTestAppComponent.create()
-    }
+    // Makes Dagger provide FakeStorage when a Storage type is requested
+    @Binds
+    abstract fun provideStorage(storage: FakeStorage): Storage
 }

@@ -14,18 +14,13 @@
  * limitations under the License.
  */
 
-package com.example.android.dagger
+package com.example.android.dagger.di
 
-import com.example.android.dagger.di.AppComponent
-import com.example.android.dagger.di.DaggerTestAppComponent
+import dagger.Component
+import javax.inject.Singleton
 
-/**
- * MyTestApplication will override MyApplication in android tests
- */
-class MyTestApplication : MyApplication() {
-
-    override fun initializeComponent(): AppComponent {
-        // Creates a new TestAppComponent that injects fakes types
-        return DaggerTestAppComponent.create()
-    }
-}
+// Replacement for AppComponent in android tests
+@Singleton
+// Includes TestStorageModule that overrides objects provided in StorageModule
+@Component(modules = [TestStorageModule::class, AppSubcomponents::class])
+interface TestAppComponent : AppComponent
