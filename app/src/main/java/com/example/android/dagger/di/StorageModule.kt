@@ -14,30 +14,18 @@
  * limitations under the License.
  */
 
-package com.example.android.dagger.user
+package com.example.android.dagger.di
 
-import javax.inject.Inject
-import kotlin.random.Random
+import com.example.android.dagger.storage.SharedPreferencesStorage
+import com.example.android.dagger.storage.Storage
+import dagger.Binds
+import dagger.Module
 
-/**
- * UserDataRepository contains user-specific data such as username and unread notifications.
- */
-class UserDataRepository @Inject constructor(private val userManager: UserManager) {
+// Tells Dagger this is a Dagger module
+@Module
+abstract class StorageModule {
 
-    val username: String
-        get() = userManager.username
-
-    var unreadNotifications: Int
-
-    init {
-        unreadNotifications = randomInt()
-    }
-
-    fun refreshUnreadNotifications() {
-        unreadNotifications = randomInt()
-    }
-}
-
-fun randomInt(): Int {
-    return Random.nextInt(until = 100)
+    // Makes Dagger provide SharedPreferencesStorage when a Storage type is requested
+    @Binds
+    abstract fun provideStorage(storage: SharedPreferencesStorage): Storage
 }
