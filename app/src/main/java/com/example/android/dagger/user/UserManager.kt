@@ -81,6 +81,8 @@ class UserManager @Inject constructor(
         logout()
     }
 
+//   谷歌这块儿太细节了。
+//   当注册成功了。才来创建这个注解。
     private fun userJustLoggedIn() {
         // When the user logs in, we create a new instance of UserComponent
         userComponent = userComponentFactory.create()

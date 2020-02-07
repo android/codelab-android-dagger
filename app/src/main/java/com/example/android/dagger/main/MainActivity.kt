@@ -53,12 +53,19 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
         } else {
+
+//            当注册成功了。才来创建这个注解。
+//            在在调到MainActivity的时候因为已经登录进来了
+//            所以直接可以inject了。
             setContentView(R.layout.activity_main)
 
             // If the MainActivity needs to be displayed, we get the UserComponent from the
             // application graph and gets this Activity injected
             userManager.userComponent!!.inject(this)
             setupViews()
+
+//            MainActivity的登录成功 和Setting 都是在登录之后才显示的。所以这两个可以放到一个userComponent中
+//            此时用到的类都是新创建的。
         }
     }
 
