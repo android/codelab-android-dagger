@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupViews() {
         findViewById<TextView>(R.id.hello).text = mainViewModel.welcomeText
-        findViewById<Button>(R.id.logout).setOnClickListener {
+        findViewById<Button>(R.id.settings).setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
         }
     }
