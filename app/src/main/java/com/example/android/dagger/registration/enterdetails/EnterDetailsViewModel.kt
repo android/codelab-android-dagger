@@ -19,7 +19,7 @@ package com.example.android.dagger.registration.enterdetails
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
-private const val MAX_LENGTH = 5
+private const val MIN_LENGTH = 1
 
 /**
  * EnterDetailsViewModel is the ViewModel that [EnterDetailsFragment] uses to
@@ -33,10 +33,10 @@ class EnterDetailsViewModel {
 
     fun validateInput(username: String, password: String) {
         when {
-            username.length < MAX_LENGTH -> _enterDetailsState.value =
-                EnterDetailsError("Username has to be longer than 4 characters")
-            password.length < MAX_LENGTH -> _enterDetailsState.value =
-                EnterDetailsError("Password has to be longer than 4 characters")
+            username.length < MIN_LENGTH -> _enterDetailsState.value =
+                EnterDetailsError("Username has to be longer than $MIN_LENGTH characters")
+            password.length < MIN_LENGTH -> _enterDetailsState.value =
+                EnterDetailsError("Password has to be longer than $MIN_LENGTH characters")
             else -> _enterDetailsState.value = EnterDetailsSuccess
         }
     }
