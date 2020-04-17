@@ -4,11 +4,11 @@
     <string name="welcome_dagger">Welcome to Dagger World!</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
-    <string name="registration_dagger">Register to Dagger World!</string>
+    <string name="registration_dagger">Register for Dagger World!</string>
     <string name="register">Register</string>
     <string name="next">Next</string>
-    <string name="login_error">Error logging you in. Try again</string>
-    <string name="registration_error">Error happened during registration. Try again</string>
+    <string name="login_error">Error logging you in. Try again.</string>
+    <string name="registration_error">Error occurred during registration. Try again.</string>
     <string name="terms_and_conditions">Terms and Conditions</string>
     <string name="tcs_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pharetra, nibh eget fringilla fringilla, nibh leo gravida leo, sed imperdiet purus dolor vitae urna. Etiam nec tincidunt lacus. Aenean porttitor, orci feugiat porttitor sollicitudin, ante tellus tempus augue, ac facilisis augue eros at mi. Quisque iaculis arcu vel purus egestas, eu aliquet metus pharetra. Sed fringilla, velit ut ullamcorper volutpat, lorem velit tincidunt lacus, eu viverra leo felis vitae risus.</string>
     <string name="settings">Settings</string>
