@@ -34,32 +34,17 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var mainViewModel: MainViewModel
 
-    /**
-     * If the User is not registered, RegistrationActivity will be launched,
-     * If the User is not logged in, LoginActivity will be launched,
-     * else carry on with MainActivity.
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
         // Grabs instance of UserManager from the application graph
         val userManager = (application as MyApplication).appComponent.userManager()
-        if (!userManager.isUserLoggedIn()) {
-            if (!userManager.isUserRegistered()) {
-                startActivity(Intent(this, RegistrationActivity::class.java))
-                finish()
-            } else {
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
-            }
-        } else {
-            setContentView(R.layout.activity_main)
+        // If the MainActivity needs to be displayed, we get the UserComponent from the
+        // application graph and gets this Activity injected
+        userManager.userComponent!!.inject(this)
 
-            // If the MainActivity needs to be displayed, we get the UserComponent from the
-            // application graph and gets this Activity injected
-            userManager.userComponent!!.inject(this)
-            setupViews()
-        }
+        super.onCreate(savedInstanceState)
+
+        setContentView(R.layout.activity_main)
+        setupViews()
     }
 
     /**
