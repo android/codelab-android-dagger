@@ -1,6 +1,7 @@
 package com.example.android.dagger.splash
 
 import androidx.appcompat.app.AppCompatActivity
+import com.example.android.dagger.di.ActivityScope
 import com.example.android.dagger.login.LoginActivity
 import com.example.android.dagger.main.MainActivity
 import com.example.android.dagger.registration.RegistrationActivity
@@ -14,6 +15,7 @@ import javax.inject.Inject
  * @Inject tells Dagger how to provide instances of this type. Dagger also knows
  * that UserManager is a dependency.
  */
+@ActivityScope
 class SplashViewModel @Inject constructor(private val userManager: UserManager) {
 
     /**
