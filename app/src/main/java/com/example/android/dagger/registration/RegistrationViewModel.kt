@@ -24,6 +24,8 @@ import com.example.android.dagger.user.UserManager
  */
 class RegistrationViewModel(val userManager: UserManager) {
 
+
+    
     private var username: String? = null
     private var password: String? = null
     private var acceptedTCs: Boolean? = null
