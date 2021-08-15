@@ -32,7 +32,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     @Inject lateinit var mainViewModel: MainViewModel
-    @Inject lateinit var userManager: UserManager
+   // @Inject lateinit var userManager: UserManager
 
     /**
      * If the User is not registered, RegistrationActivity will be launched,
@@ -40,10 +40,10 @@ class MainActivity : AppCompatActivity() {
      * else carry on with MainActivity
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as MyApplication).appComponent.inject(this)
-
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_settings)
 
+        val userManager= (application as MyApplication).appComponent.userManager() // userComponent().create().inject(this)
         if (!userManager.isUserLoggedIn()) {
             if (!userManager.isUserRegistered()) {
                 startActivity(Intent(this, RegistrationActivity::class.java))
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
             }
         } else {
             setContentView(R.layout.activity_main)
-
+            userManager.userComponent?.inject(this)
             setupViews()
         }
     }
