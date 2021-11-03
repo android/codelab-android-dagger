@@ -69,8 +69,9 @@ class EnterDetailsFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_enter_details, container, false)
 
-        enterDetailsViewModel.enterDetailsState.observe(this,
-            Observer<EnterDetailsViewState> { state ->
+        enterDetailsViewModel.enterDetailsState.observe(
+            viewLifecycleOwner,
+            { state ->
                 when (state) {
                     is EnterDetailsSuccess -> {
 
@@ -85,7 +86,8 @@ class EnterDetailsFragment : Fragment() {
                         errorTextView.visibility = View.VISIBLE
                     }
                 }
-            })
+            }
+        )
 
         setupViews(view)
         return view
