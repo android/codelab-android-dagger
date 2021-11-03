@@ -25,7 +25,6 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import com.example.android.dagger.R
 import com.example.android.dagger.registration.RegistrationActivity
 import com.example.android.dagger.registration.RegistrationViewModel
@@ -58,8 +57,9 @@ class EnterDetailsFragment : Fragment() {
         registrationViewModel = (activity as RegistrationActivity).registrationViewModel
 
         enterDetailsViewModel = EnterDetailsViewModel()
-        enterDetailsViewModel.enterDetailsState.observe(this,
-            Observer<EnterDetailsViewState> { state ->
+        enterDetailsViewModel.enterDetailsState.observe(
+            viewLifecycleOwner,
+            { state ->
                 when (state) {
                     is EnterDetailsSuccess -> {
 
@@ -74,7 +74,8 @@ class EnterDetailsFragment : Fragment() {
                         errorTextView.visibility = View.VISIBLE
                     }
                 }
-            })
+            }
+        )
 
         setupViews(view)
         return view
