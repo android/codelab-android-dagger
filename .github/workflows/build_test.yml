@@ -90,6 +90,7 @@ jobs:
       - name: Login to Google Cloud
         uses: google-github-actions/setup-gcloud@master
         with:
+          version: '281.0.0'
           service_account_key: ${{ secrets.FTL_KEY_BASE64 }}
 
       - name: Set current project
