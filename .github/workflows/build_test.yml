@@ -3,15 +3,15 @@
 name: CI
 
 # Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
+# events but only for the main branch
 on:
   push:
     branches:
-      - master
+      - main
       - solution
   pull_request:
     branches:
-      - master
+      - main
       - solution
     
 jobs:
@@ -88,7 +88,7 @@ jobs:
           name: app-debug-androidTest
 
       - name: Login to Google Cloud
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
         with:
           version: '281.0.0'
           service_account_key: ${{ secrets.FTL_KEY_BASE64 }}
