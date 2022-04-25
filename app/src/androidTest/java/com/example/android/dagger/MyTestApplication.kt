@@ -16,12 +16,14 @@
 
 package com.example.android.dagger
 
+import com.example.android.dagger.di.AppComponent
+import com.example.android.dagger.di.DaggerTestAppComponent
 import com.example.android.dagger.storage.FakeStorage
 import com.example.android.dagger.user.UserManager
 
 class MyTestApplication : MyApplication() {
 
-    override val userManager by lazy {
-        UserManager(FakeStorage())
+    override fun initializeComponent(): AppComponent {
+        return DaggerTestAppComponent.create()
     }
 }
