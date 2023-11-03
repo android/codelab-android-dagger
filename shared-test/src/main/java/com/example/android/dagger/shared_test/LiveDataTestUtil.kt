@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.dagger
+package com.example.android.dagger.shared_test
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer

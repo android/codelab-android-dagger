@@ -17,7 +17,7 @@
 package com.example.android.dagger.login
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.android.dagger.LiveDataTestUtil
+import com.example.android.dagger.shared_test.LiveDataTestUtil
 import com.example.android.dagger.user.UserManager
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -57,7 +57,7 @@ class LoginViewModelTest {
 
         viewModel.login("username", "login")
 
-        assertEquals(LiveDataTestUtil.getValue(viewModel.loginState), LoginSuccess)
+        assertEquals(com.example.android.dagger.shared_test.LiveDataTestUtil.getValue(viewModel.loginState), LoginSuccess)
     }
 
     @Test
@@ -66,7 +66,7 @@ class LoginViewModelTest {
 
         viewModel.login("username", "login")
 
-        assertEquals(LiveDataTestUtil.getValue(viewModel.loginState), LoginError)
+        assertEquals(com.example.android.dagger.shared_test.LiveDataTestUtil.getValue(viewModel.loginState), LoginError)
     }
 
     @Test
