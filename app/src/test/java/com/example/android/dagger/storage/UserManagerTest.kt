@@ -16,6 +16,7 @@
 
 package com.example.android.dagger.storage
 
+import com.example.android.dagger.shared_test.storage.FakeStorage
 import com.example.android.dagger.user.UserComponent
 import com.example.android.dagger.user.UserManager
 import org.junit.Assert.assertEquals

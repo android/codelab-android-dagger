@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package com.example.android.dagger.storage
+package com.example.android.dagger.shared_test.storage
 
+import com.example.android.dagger.storage.Storage
 import javax.inject.Inject
 
 class FakeStorage @Inject constructor(): Storage {
