@@ -57,7 +57,7 @@ class LoginViewModelTest {
 
         viewModel.login("username", "login")
 
-        assertEquals(com.example.android.dagger.shared_test.LiveDataTestUtil.getValue(viewModel.loginState), LoginSuccess)
+        assertEquals(LiveDataTestUtil.getValue(viewModel.loginState), LoginSuccess)
     }
 
     @Test
@@ -66,7 +66,7 @@ class LoginViewModelTest {
 
         viewModel.login("username", "login")
 
-        assertEquals(com.example.android.dagger.shared_test.LiveDataTestUtil.getValue(viewModel.loginState), LoginError)
+        assertEquals(LiveDataTestUtil.getValue(viewModel.loginState), LoginError)
     }
 
     @Test
