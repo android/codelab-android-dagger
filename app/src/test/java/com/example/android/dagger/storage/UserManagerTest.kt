@@ -16,12 +16,15 @@
 
 package com.example.android.dagger.storage
 
+import com.example.android.dagger.di.user.UserComponent
 import com.example.android.dagger.user.UserManager
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
+import org.mockito.Mockito
+import org.mockito.Mockito.`when`
 
 class UserManagerTest {
 
@@ -30,8 +33,12 @@ class UserManagerTest {
 
     @Before
     fun setup() {
+        val userComponentFactory = Mockito.mock(UserComponent.Factory::class.java)
+        val userComponent = Mockito.mock(UserComponent::class.java)
+        `when`(userComponentFactory.create()).thenReturn(userComponent)
+
         storage = FakeStorage()
-        userManager = UserManager(storage)
+        userManager = UserManager(storage, userComponentFactory)
     }
 
     @Test

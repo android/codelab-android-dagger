@@ -68,7 +68,7 @@ dependencies {
     def dagger_version = "2.48"
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
-
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$dagger_version"
     def androidx_test_version = "1.4.0"
     androidTestImplementation "androidx.test:runner:$androidx_test_version"
     androidTestImplementation "androidx.test:core-ktx:$androidx_test_version"
