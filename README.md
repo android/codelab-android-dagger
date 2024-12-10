@@ -1,5 +1,8 @@
 # Using Dagger in your Android app
 
+> [!CAUTION]
+> This codelab is deprecated and it will be removed soon.
+
 This folder contains the source code for the "Using Dagger in your Android app" codelab.
 
 The codelab is built in multiple GitHub branches:
